@@ -1,0 +1,3 @@
+﻿Class ReportView
+
+End Class

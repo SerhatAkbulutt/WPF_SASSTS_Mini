@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <RootNamespace>WPF_SASSTS_Mini</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="gridcontacts.svg" />
+    <None Remove="gridtasks.svg" />
+    <None Remove="scheduler.svg" />
+    <None Remove="spreadsheet.svg" />
+    <None Remove="Views\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Data" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Imaging" />
+    <Import Include="System.Windows.Navigation" />
+    <Import Include="System.Windows.Shapes" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="devexpress.wpf.accordion" Version="23.1.6" />
+    <PackageReference Include="DevExpress.Wpf.Core" Version="23.1.6" />
+    <PackageReference Include="devexpress.wpf.docking" Version="23.1.6" />
+    <PackageReference Include="devexpress.wpf.grid.core" Version="23.1.6" />
+    <PackageReference Include="devexpress.wpf.layoutcontrol" Version="23.1.6" />
+    <PackageReference Include="devexpress.wpf.propertygrid" Version="23.1.6" />
+    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="23.1.6" />
+    <PackageReference Include="FluentValidation" Version="11.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="My Project\NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="gridcontacts.svg" />
+    <Resource Include="gridtasks.svg" />
+    <Resource Include="scheduler.svg" />
+    <Resource Include="spreadsheet.svg" />
+    <Resource Include="Views\logo.png" />
+  </ItemGroup>
+</Project>

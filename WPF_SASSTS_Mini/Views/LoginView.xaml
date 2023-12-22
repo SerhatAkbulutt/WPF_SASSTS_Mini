@@ -1,0 +1,51 @@
+﻿<dx:ThemedWindow 
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+    x:Class="LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:WPF_SASSTS_Mini"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"   
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"              
+    Title="Ahlatci Teknoloji Login Panel" 
+    Height="280" 
+    Width="550"
+    WindowStartupLocation="CenterScreen" 
+    ResizeMode="NoResize" 
+    WindowStyle="SingleBorderWindow" >
+    
+    <Window.DataContext>
+        <local:LoginViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Image Source="/Views/logo.png" Width="140" Margin="0,30,0,0" />
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="124"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <dxlc:LayoutControl Grid.Column="1" Margin="0,10,0,0">
+                <dxlc:LayoutGroup Grid.Row="0" Orientation="Vertical" Margin="10,10,20,0">
+                    <dxlc:LayoutItem Label="Kullanıcı Adı :" Height="33" Margin="0,0,3,0">
+                        <dxe:TextEdit Text="{Binding Username}" Margin="18,0,0,0"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Parola :" Height="32" Margin="0,10,3,0">
+                        <dxe:TextEdit Text="{Binding Password}" Margin="18,0,0,0"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutControl>
+
+            <StackPanel Grid.Row="1"  VerticalAlignment="Top">
+                <TextBlock Text="{Binding ErrorMassage}" Margin="116,0,35,5" Foreground="#FFC60303" FontSize="13" Width="230" TextWrapping="Wrap"/>
+                <dx:SimpleButton Margin="0,0,10,10" Content="Giriş Yap" Command="{Binding LoginCommand}"  Height="32" Width="324"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</dx:ThemedWindow>

@@ -1,0 +1,137 @@
+﻿<dx:SplashScreenWindow 
+    x:Class="SplashScreen"        
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                  
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+	dx:AllowTheming="True"
+	dx:FadeOutDuration="0:0:1.2">
+    <Grid
+		HorizontalAlignment="Center"
+		VerticalAlignment="Center">
+        <Border
+			BorderThickness="1"
+			BorderBrush="#FF000000"
+			Height="76">
+            <dx:BackgroundPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+							Width="Auto" />
+                        <ColumnDefinition
+							Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid
+						Name="Ring"
+						RenderTransformOrigin="0.5,0.5"
+						VerticalAlignment="Center"
+						Margin="27,0,7,0"
+						Width="32"
+						Height="32">
+                        <UIElement.RenderTransform>
+                            <RotateTransform />
+                        </UIElement.RenderTransform>
+                        <FrameworkElement.Triggers>
+                            <EventTrigger
+								RoutedEvent="Grid.Loaded">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard
+											TargetProperty="(Grid.RenderTransform).(RotateTransform.Angle)"
+											Target="{Binding ElementName=Ring}">
+                                            <DoubleAnimation
+												RepeatBehavior="Forever"
+												From="0"
+												To="360"
+												Duration="0:0:1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </FrameworkElement.Triggers>
+                        <Path
+							Stretch="Fill"
+							Fill="#f78a09"
+							Opacity="1"
+							Data="F1 M1266.95,765 L1271.97,765 C1271.74,768.666 1270.28,771.998 1268,774.585 L1264.45,771.039 C1265.84,769.372 1266.75,767.287 1266.95,765"
+							HorizontalAlignment="Right"
+							Height="9.585"
+							Margin="0,0,0,5.415"
+							VerticalAlignment="Bottom"
+							Width="7.516" />
+                        <Path
+							Stretch="Fill"
+							Fill="#f78a09"
+							Opacity="0.85"
+							Data="F1 M1271.97,763 L1266.95,763 C1266.75,760.713 1265.84,758.628 1264.45,756.961 L1268,753.415 C1270.28,756.003 1271.74,759.334 1271.97,763"
+							HorizontalAlignment="Right"
+							Height="9.584"
+							Margin="0,5.384,0,0"
+							VerticalAlignment="Top"
+							Width="7.516" />
+                        <Path
+							Stretch="Fill"
+							Fill="#f78a09"
+							Opacity="0.7"
+							Data="F1 M1257,753.045 L1257,748.031 C1260.67,748.257 1264,749.717 1266.58,752.001 L1263.04,755.547 C1261.37,754.157 1259.29,753.251 1257,753.045"
+							HorizontalAlignment="Right"
+							Height="7.517"
+							Margin="0,0,5.381,0"
+							VerticalAlignment="Top"
+							Width="9.585" />
+                        <Path
+							Stretch="Fill"
+							Fill="#f78a09"
+							Opacity="0.55"
+							Data="F1 M1255,748.031 L1255,753.045 C1252.71,753.251 1250.63,754.157 1248.96,755.547 L1245.41,752.001 C1248,749.717 1251.33,748.257 1255,748.031"
+							HorizontalAlignment="Left"
+							Height="7.516"
+							Margin="5.41,0,0,0"
+							VerticalAlignment="Top"
+							Width="9.585" />
+                        <Path
+							Stretch="Fill"
+							Fill="#f78a09"
+							Opacity="0.4"
+							Data="F1 M1244,753.416 L1247.55,756.961 C1246.16,758.628 1245.25,760.713 1245.04,763 L1240.03,763 C1240.26,759.334 1241.72,756.003 1244,753.416"
+							HorizontalAlignment="Left"
+							Height="9.584"
+							Margin="0.03,5.385,0,0"
+							VerticalAlignment="Top"
+							Width="7.516" />
+                        <Path
+							Stretch="Fill"
+							Fill="#f78a09"
+							Opacity="0.25"
+							Data="F1 M1245.01,765 L1240,765 C1240.23,768.666 1241.69,771.997 1243.97,774.585 L1247.52,771.039 C1246.13,769.372 1245.22,767.287 1245.01,765"
+							HorizontalAlignment="Left"
+							Height="9.585"
+							Margin="0,0,0,5.415"
+							VerticalAlignment="Bottom"
+							Width="7.516" />
+                        <Path
+							Stretch="Fill"
+							Fill="#f78a09"
+							Opacity="0.1"
+							Data="F1 M1255,780 L1255,774.986 C1252.71,774.78 1250.63,773.874 1248.96,772.484 L1245.41,776.029 C1248,778.314 1251.33,779.774 1255,780"
+							HorizontalAlignment="Left"
+							Height="7.516"
+							Margin="5.41,0,0,0"
+							VerticalAlignment="Bottom"
+							Width="9.585" />
+                    </Grid>
+                    <StackPanel
+						Grid.Column="1"
+						VerticalAlignment="Center"
+						Margin="12,0,27,0">
+                        <TextBlock
+							Text="Please Wait"
+							FontSize="16" />
+                        <TextBlock
+							Text="Loading..."
+							FontSize="14" />
+                    </StackPanel>
+                </Grid>
+            </dx:BackgroundPanel>
+        </Border>
+    </Grid>
+</dx:SplashScreenWindow>
