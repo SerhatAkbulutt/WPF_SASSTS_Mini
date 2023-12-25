@@ -6,10 +6,10 @@
       xmlns:local="clr-namespace:WPF_SASSTS_Mini" 
       xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
       xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" 
-      xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" 
       xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation" 
       xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
       xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+      dx:ThemeManager.ThemeName="{Binding Path=(local:CurrentTheme.ThemeName)}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page2">
@@ -40,7 +40,7 @@
 					IsCollapseButtonVisible="True"
 					RootItemDisplayMode="Item"
 					ShowPopupOnHover="True"
-					SelectedItem="{Binding SelectedModuleInfo}">
+					>
                     <dxa:AccordionItem Command="{Binding ShowProductCommand}" Header="Ürünler" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/spreadsheet.svg" />
                     <dxa:AccordionItem Command="{Binding ShowEmployeeCommand}" Header="Personel Listesi" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/gridcontacts.svg" />
                     <dxa:AccordionItem Command="{Binding ShowRequestCommand}" Header="Talep İşlemi" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/scheduler.svg"  />
@@ -52,14 +52,14 @@
 					AllowFloat="False"
 					AllowHide="False"
 					ShowCaption="False"
-					ShowBorder="False"
+					ShowBorder="True"
 					ShowCloseButton="False">
                 <Frame x:Name="pageFrame" Content="{Binding CurrentPage}">
                 </Frame>
                 <dxmvvm:Interaction.Behaviors>
                     <dxwuin:FrameNavigationService
 						ShowSplashScreen="{Binding CanShowSplashScreen}"
-						Frame="{Binding ElementName=pageFrame}">
+						>
                         <dxwuin:FrameNavigationService.SplashScreenService>
                             <dx:SplashScreenManagerService
 								SplashScreenType="{x:Type local:SplashScreen}" />

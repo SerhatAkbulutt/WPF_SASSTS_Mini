@@ -59,7 +59,7 @@ Public Class ApiService
         End Using
     End Function
 
-    Public Async Function PutFunc(Of TRequest, TResponse)(data As TRequest, endPoint As String) As Task(Of TResponse)
+    Public Async Function PutFunc(Of TRequest, TResponse)(data As TRequest, endPoint As String) As Task(Of ResponseBody(Of TResponse))
         Using client As New HttpClient()
             Dim requestMessage As New HttpRequestMessage() With
             {
@@ -79,7 +79,7 @@ Public Class ApiService
 
             If responseMessage IsNot Nothing Then
                 Dim jsonResponse = Await responseMessage.Content.ReadAsStringAsync()
-                Dim result = JsonSerializer.Deserialize(Of TResponse)(jsonResponse, New JsonSerializerOptions() With {.PropertyNameCaseInsensitive = True})
+                Dim result = JsonSerializer.Deserialize(Of ResponseBody(Of TResponse))(jsonResponse, New JsonSerializerOptions() With {.PropertyNameCaseInsensitive = True})
                 Return result
             Else
                 Return Nothing

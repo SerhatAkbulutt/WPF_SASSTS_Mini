@@ -6,7 +6,8 @@
     xmlns:local="clr-namespace:WPF_SASSTS_Mini" 
                  xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                  Title="MainWindow" 
-                 WindowStartupLocation="CenterScreen" 
+                 WindowStartupLocation="CenterScreen"
+                 ShowGlow="False"
                  Height="600" 
                  Width="1000">
     <Grid>

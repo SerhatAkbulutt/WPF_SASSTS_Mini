@@ -10,6 +10,7 @@
       xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
       xmlns:local="clr-namespace:WPF_SASSTS_Mini"
       x:Class="EmployeeView"
+      dx:ThemeManager.ThemeName="{Binding Path=(local:CurrentTheme.ThemeName)}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
     <Page.Resources>
@@ -23,7 +24,6 @@
             </Border>
         </DataTemplate>
     </Page.Resources>
-    
     <dxmvvm:Interaction.Behaviors>
         <dxmvvm:NotificationService x:Name="ServiceWithCustomNotifications" CustomNotificationTemplate="{StaticResource CustomNotificationTemplate}" CustomNotificationPosition="BottomRight" />
     </dxmvvm:Interaction.Behaviors>
@@ -68,23 +68,27 @@
                         <Image Source="{Binding SelectedEmployee.Image, Converter={StaticResource Base64ToImageConverter}}" Width="100" Height="100" Margin="20,10,0,10"></Image>
 
 
-                        <dxlc:LayoutItem Label="Ad :" Height="24" Margin="0,0,3,0">
+                        <dxlc:LayoutItem Label="Ad :" Height="24" Margin="0,0,3,6">
                             <dxe:TextEdit Text="{Binding SelectedEmployee.EmployeeName}" Margin="10,0,0,0"/>
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Soyad :" Height="24" Margin="0,1,3,0">
+                        <dxlc:LayoutItem Label="Soyad :" Height="24" Margin="0,1,3,6">
                             <dxe:TextEdit Text="{Binding SelectedEmployee.EmployeeSurname}" Margin="10,0,0,0"/>
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Email :" Height="24" Margin="0,1,3,0">
+                        <dxlc:LayoutItem Label="Email :" Height="24" Margin="0,1,3,6">
                             <dxe:TextEdit Text="{Binding SelectedEmployee.Email}" Margin="10,0,0,0"/>
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Telefon :" Height="24" Margin="0,1,3,0">
-                            <dxe:TextEdit Text="{Binding SelectedEmployee.Phone}" Margin="10,0,0,0"/>
+                        <dxlc:LayoutItem Label="Telefon :" Height="24" Margin="0,1,3,6">
+                            <dxe:TextEdit Text="{Binding SelectedEmployee.Phone}" Margin="10,0,0,0"
+                                  MaskUseAsDisplayFormat="True"
+                                  NullText="05---------"
+                                  MaskType="RegEx"
+                                  Mask="05\d{9}" />
                         </dxlc:LayoutItem>
 
-                        <StackPanel Orientation="Horizontal" Height="40" FlowDirection="RightToLeft" Margin="0,100,3,0">
+                        <StackPanel Orientation="Horizontal" Height="40" FlowDirection="RightToLeft" Margin="0,80,3,0">
                             <dx:SimpleButton Command="{Binding EmployeeUpdateCommand}" Width="80" Height="24" Content="Güncelle"  Margin="0,0,3,0" />
                             <dx:SimpleButton Command="{Binding EmployeeDeleteCommand}" Width="80" Height="24" Content="Sil"  Margin="0,0,3,0" />
                         </StackPanel>

@@ -1,6 +1,4 @@
-﻿Imports System.ComponentModel.DataAnnotations
-Imports System.Configuration
-Imports DevExpress.Mvvm
+﻿Imports DevExpress.Mvvm
 Imports DevExpress.Mvvm.DataAnnotations
 Imports DevExpress.Xpf.Core
 

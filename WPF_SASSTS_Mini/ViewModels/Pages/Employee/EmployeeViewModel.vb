@@ -1,7 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 Imports DevExpress.Mvvm
 Imports DevExpress.Mvvm.DataAnnotations
-Imports DevExpress.Mvvm.POCO
+Imports DevExpress.Xpf.Core
 
 Public Class EmployeeViewModel
     Inherits ViewModelBase
@@ -22,6 +22,9 @@ Public Class EmployeeViewModel
 
 
     Public Sub New()
+        ApplicationThemeHelper.ApplicationThemeName = CurrentTheme.ThemeName
+        Theme.CachePaletteThemes = True
+        Theme.RegisterPredefinedPaletteThemes()
         Employees = New ObservableCollection(Of Employee)
         Dim test = GetEmployees()
     End Sub
@@ -47,28 +50,19 @@ Public Class EmployeeViewModel
     <Command>
     Public Async Function EmployeeUpdateCommand() As Task
 
-        ShowCustomNotification()
+        If SelectedEmployee IsNot Nothing Then
+            Dim result = ThemedMessageBox.Show(title:="Personel Güncelleme", text:="Personoli Güncellemek İstiyor Musunuz?", messageBoxButtons:=MessageBoxButton.OKCancel, defaultButton:=MessageBoxResult.OK, icon:=MessageBoxImage.Information)
+            If result = MessageBoxResult.OK Then
+                Dim apiService As New ApiService()
+                Dim resp As ResponseBody(Of NoData) = Await apiService.PutFunc(Of Employee, NoData)(SelectedEmployee, "employees/updateEmployee")
+                Await GetEmployees()
+                SelectedEmployee = Nothing
+            End If
+        End If
+
     End Function
 
-    <ServiceProperty(Key:="ServiceWithCustomNotifications")>
-    Protected Overridable ReadOnly Property CustomNotificationService As INotificationService
-        Get
-            Return Nothing
-        End Get
-    End Property
 
-
-    Public Sub ShowCustomNotification()
-        Dim vm As CustomNotificationViewModel = ViewModelSource.Create(Function() New CustomNotificationViewModel())
-        vm.Caption = "Custom Notification"
-        vm.Content = String.Format("Time: {0}", Date.Now)
-        Dim notification As INotification = CustomNotificationService.CreateCustomNotification(vm)
-        notification.ShowAsync()
-    End Sub
-
-    Private Sub ProcessNotificationResult(ByVal result As NotificationResult)
-        '...
-    End Sub
 
     <Command>
     Public Async Function EmployeeDeleteCommand() As Task

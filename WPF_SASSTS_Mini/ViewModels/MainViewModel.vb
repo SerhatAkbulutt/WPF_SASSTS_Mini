@@ -23,6 +23,7 @@ Public Class MainViewModel
     End Property
 
     Public Sub New()
+
         _page2 = New Page2()
         CurrentPage = _page2
     End Sub
@@ -30,9 +31,12 @@ Public Class MainViewModel
     <Command>
     Public Sub ThemeSelection(editValue As Object)
         Dim selectedValue = editValue
+        CurrentTheme.ThemeName = selectedValue
         ApplicationThemeHelper.ApplicationThemeName = selectedValue
         Theme.CachePaletteThemes = True
         Theme.RegisterPredefinedPaletteThemes()
+        _page2 = New Page2()
+        CurrentPage = _page2
     End Sub
 
     <Command>

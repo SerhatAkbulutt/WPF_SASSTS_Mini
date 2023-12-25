@@ -10,8 +10,10 @@
   <ItemGroup>
     <None Remove="gridcontacts.svg" />
     <None Remove="gridtasks.svg" />
+    <None Remove="null.png" />
     <None Remove="scheduler.svg" />
     <None Remove="spreadsheet.svg" />
+    <None Remove="UserControl\laptop.png" />
     <None Remove="Views\logo.png" />
   </ItemGroup>
 
@@ -45,8 +47,26 @@
   <ItemGroup>
     <Resource Include="gridcontacts.svg" />
     <Resource Include="gridtasks.svg" />
+    <Resource Include="null.png" />
     <Resource Include="scheduler.svg" />
     <Resource Include="spreadsheet.svg" />
+    <Resource Include="UserControl\laptop.png" />
     <Resource Include="Views\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="My Project\Resources.Designer.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
