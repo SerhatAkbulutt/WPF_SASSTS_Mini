@@ -13,10 +13,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page2">
-    <Page.DataContext>
-        <local:Pages2ViewModel/>
-    </Page.DataContext>
-
     <Page.Resources>
         <dxmvvm:ObjectToObjectConverter DefaultTarget="183" x:Key="expandedToWidthConverter">
             <dxmvvm:MapItem Source="False" Target="Auto" />
@@ -31,20 +27,43 @@
                 AllowClose="False"
                 ShowCaption="False"	
                 AllowSizing="False"        
-                ItemWidth="{Binding ElementName=accordion, Path=IsExpanded, Converter={StaticResource expandedToWidthConverter}}" FocusContentOnActivating="False"
-                >
+                ItemWidth="{Binding ElementName=accordion, Path=IsExpanded, Converter={StaticResource expandedToWidthConverter}}" 
+                FocusContentOnActivating="False" >
                 <dxa:AccordionControl 
                     Name="accordion"
 					HeaderContent="Program Test"
 					SummaryItemHeader="Program Test"
 					IsCollapseButtonVisible="True"
 					RootItemDisplayMode="Item"
-					ShowPopupOnHover="True"
-					>
-                    <dxa:AccordionItem Command="{Binding ShowProductCommand}" Header="Ürünler" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/Resources/Images/product.svg" />
-                    <dxa:AccordionItem Command="{Binding ShowEmployeeCommand}" Header="Personel Listesi" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/Resources/Images/employee.svg"/>
-                    <dxa:AccordionItem Command="{Binding ShowRequestCommand}" Header="Talep İşlemi" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/Resources/Images/request.svg"/>
-                    <dxa:AccordionItem Command="{Binding ShowReportCommand}" Header="Raporlar" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/Resources/Images/pdf.svg"/>
+					ShowPopupOnHover="True">
+                    <dxa:AccordionItem 
+                        Command="{Binding ShowProductCommand}" 
+                        Header="Ürünler" 
+                        HorizontalContentAlignment="Center" 
+                        GlyphPosition="Top" 
+                        Margin="0,4,0,4" 
+                        Glyph="/Resources/Images/product.svg" />
+                    <dxa:AccordionItem 
+                        Command="{Binding ShowEmployeeCommand}"           
+                        Header="Personel Listesi" 
+                        HorizontalContentAlignment="Center" 
+                        GlyphPosition="Top" 
+                        Margin="0,4,0,4" 
+                        Glyph="/Resources/Images/employee.svg"/>
+                    <dxa:AccordionItem 
+                        Command="{Binding ShowRequestCommand}"   
+                        Header="Talep İşlemi" 
+                        HorizontalContentAlignment="Center" 
+                        GlyphPosition="Top" 
+                        Margin="0,4,0,4" 
+                        Glyph="/Resources/Images/request.svg"/>
+                    <dxa:AccordionItem 
+                        Command="{Binding ShowReportCommand}" 
+                        Header="Raporlar" 
+                        HorizontalContentAlignment="Center" 
+                        GlyphPosition="Top" 
+                        Margin="0,4,0,4" 
+                        Glyph="/Resources/Images/pdf.svg"/>
                 </dxa:AccordionControl>
             </dxdo:LayoutPanel>
             <dxdo:LayoutPanel
@@ -57,12 +76,9 @@
                 <Frame x:Name="pageFrame" Content="{Binding CurrentPage}">
                 </Frame>
                 <dxmvvm:Interaction.Behaviors>
-                    <dxwuin:FrameNavigationService
-						ShowSplashScreen="{Binding CanShowSplashScreen}"
-						>
+                    <dxwuin:FrameNavigationService ShowSplashScreen="{Binding CanShowSplashScreen}">
                         <dxwuin:FrameNavigationService.SplashScreenService>
-                            <dx:SplashScreenManagerService
-								SplashScreenType="{x:Type local:SplashScreen}" />
+                            <dx:SplashScreenManagerService SplashScreenType="{x:Type local:SplashScreen}" />
                         </dxwuin:FrameNavigationService.SplashScreenService>
                     </dxwuin:FrameNavigationService>
                 </dxmvvm:Interaction.Behaviors>

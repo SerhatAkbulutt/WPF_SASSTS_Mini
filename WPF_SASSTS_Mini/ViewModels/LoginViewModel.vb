@@ -87,7 +87,7 @@ Public Class LoginViewModel
             If resp IsNot Nothing AndAlso resp.Data IsNot Nothing AndAlso resp.Data.Token IsNot Nothing Then
                 Session.Username = Username
                 Session.Account = resp.Data.Session
-                CurrentView.MainWindow = New MainWindow()
+                CurrentView.MainWindow = New MainView()
                 CurrentView.MainWindow.Show()
                 CurrentView.LoginWindow.Close()
             End If

@@ -1,4 +1,6 @@
-﻿Public Class CreateImageSource
+﻿Imports System.IO
+
+Public Class ImageConverter
     Public Shared Function Create(url As String)
         Dim bitmapImage As New BitmapImage()
         bitmapImage.BeginInit()
@@ -21,5 +23,11 @@
         Else
             Return Nothing
         End If
+    End Function
+
+    Public Shared Function ImageUrlToBase64(url As String)
+        Dim imageBytes As Byte() = File.ReadAllBytes(url)
+        Dim base64String As String = Convert.ToBase64String(imageBytes)
+        Return base64String
     End Function
 End Class

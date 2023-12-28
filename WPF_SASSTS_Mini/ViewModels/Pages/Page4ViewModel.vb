@@ -1,5 +1,5 @@
 ﻿Imports DevExpress.Mvvm
 
-Public Class Pages4ViewModel
+Public Class Page4ViewModel
     Inherits ViewModelBase
 End Class

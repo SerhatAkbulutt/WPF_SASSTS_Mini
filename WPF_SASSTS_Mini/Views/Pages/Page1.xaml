@@ -8,9 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
     <Page.DataContext>
-        <local:Pages1ViewModel/>
+        <local:Page1ViewModel/>
     </Page.DataContext>
     <Grid>
-        <TextBlock Text="Page 1"></TextBlock>
+        <TextBlock Margin="100" Text="Page 1" Foreground="red"></TextBlock>
     </Grid>
 </Page>

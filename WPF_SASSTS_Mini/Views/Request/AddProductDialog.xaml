@@ -24,12 +24,12 @@
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Margin="10,30,10,8" Label="Kategori : ">
                     <dxe:ComboBoxEdit 
-                         Height="30"
-                         DisplayMember="CategoryName" 
-                         ValueMember="Id"  
+                        Height="30"
+                        DisplayMember="CategoryName" 
+                        ValueMember="Id"  
                         IsTextEditable="False"
-                         ItemsSource="{Binding Source={x:Static local:RepoCategory.Categories}}"  
-                         SelectedItem="{Binding SelectedCategory}"
+                        ItemsSource="{Binding Source={x:Static local:RepoCategory.Categories}}"  
+                        SelectedItem="{Binding SelectedCategory}"
                         >
                     </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
@@ -44,7 +44,14 @@
                         SelectedItem="{Binding SelectedProduct}" />
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Margin="10,0,150,15" Label="Adet : ">
-                    <dxe:SpinEdit MinValue="1" Value="1" HorizontalContentAlignment="Center" MaxValue="100" IsFloatValue="False" />
+                    <dxe:SpinEdit 
+                        MinValue="1"
+                        Value="1"
+                        MaskType="Numeric"
+                        EditValue="{Binding SelectedQuantity , Mode=TwoWay}" 
+                        HorizontalContentAlignment="Center" 
+                        MaxValue="10000"
+                        IsFloatValue="False" />
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>

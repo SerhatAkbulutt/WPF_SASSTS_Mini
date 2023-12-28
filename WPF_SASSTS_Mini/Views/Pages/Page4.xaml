@@ -8,6 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page4">
     <Grid>
-        
+        <TextBlock Margin="100" Text="Page 4" Foreground="red"></TextBlock>
+
     </Grid>
 </Page>

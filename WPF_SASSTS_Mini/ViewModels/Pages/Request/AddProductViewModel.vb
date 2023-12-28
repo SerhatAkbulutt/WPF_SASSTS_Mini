@@ -9,7 +9,7 @@ Public Class AddProductViewModel
 
     Private _image As ImageSource
     Private _basketItem As BasketItem
-    Private _quantity As Integer
+    Private _quantity As Decimal = 1
     Private _selectedProduct As GetProduct
     Private _selectedCategory As Category
     Private _window As AddProductDialog
@@ -26,13 +26,13 @@ Public Class AddProductViewModel
         End Set
     End Property
 
-    Public Property Quantity() As Integer
+    Public Property SelectedQuantity() As Decimal
         Get
             Return _quantity
         End Get
-        Set(value As Integer)
+        Set(value As Decimal)
             _quantity = value
-            RaisePropertyChanged(NameOf(Quantity))
+            RaisePropertyChanged(NameOf(SelectedQuantity))
         End Set
     End Property
 
@@ -76,7 +76,7 @@ Public Class AddProductViewModel
 
     Public Sub New(isNew As Boolean)
         SelectedCategoryProducts = New ObservableCollection(Of GetProduct)
-        Image = CreateImageSource.Create("/Resources/Images/null.png")
+        Image = ImageConverter.Create("/Resources/Images/null.png")
         If isNew Then
             _window = New AddProductDialog()
         End If
@@ -93,9 +93,9 @@ Public Class AddProductViewModel
 
     Public Sub SelectImage()
         If SelectedProduct IsNot Nothing AndAlso SelectedProduct.ProductImage IsNot Nothing Then
-            Image = CreateImageSource.Base64ToImage(SelectedProduct.ProductImage)
+            Image = ImageConverter.Base64ToImage(SelectedProduct.ProductImage)
         Else
-            Image = CreateImageSource.Create("/Resources/Images/null.png")
+            Image = ImageConverter.Create("/Resources/Images/null.png")
         End If
     End Sub
 
@@ -131,7 +131,7 @@ Public Class AddProductViewModel
             Dim newBasketItem As BasketItem = New BasketItem() With
             {
                 .Product = SelectedProduct,
-                .Quantity = 1
+                .Quantity = Convert.ToInt32(SelectedQuantity)
             }
             BasketItem = newBasketItem
             RaiseEvent AddComplete(Me, newBasketItem)

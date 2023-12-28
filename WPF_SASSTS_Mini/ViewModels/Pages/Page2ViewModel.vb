@@ -2,7 +2,7 @@
 Imports DevExpress.Mvvm.DataAnnotations
 Imports DevExpress.Pdf.Native.BouncyCastle.Asn1.Ocsp
 
-Public Class Pages2ViewModel
+Public Class Page2ViewModel
     Inherits ViewModelBase
 
     Public Overridable Property CanShowSplashScreen As Boolean
@@ -26,7 +26,6 @@ Public Class Pages2ViewModel
     Public Sub New()
         _requestPage = New RequestView()
         CurrentPage = _requestPage
-        CanShowSplashScreen = True
     End Sub
 
     <Command>

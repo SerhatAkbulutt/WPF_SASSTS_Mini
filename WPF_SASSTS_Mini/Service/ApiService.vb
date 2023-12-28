@@ -130,7 +130,6 @@ Public Class ResponseBody(Of T)
     Public Property ErrorMessages As List(Of String)
 End Class
 
-
 Public Class NoData
 
 End Class
