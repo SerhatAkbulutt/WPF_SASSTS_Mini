@@ -1,11 +1,11 @@
 ﻿Imports DevExpress.Mvvm
 Imports DevExpress.Mvvm.DataAnnotations
-Imports DevExpress.Pdf.Native.BouncyCastle.Asn1.Ocsp
 
 Public Class Page2ViewModel
     Inherits ViewModelBase
 
     Public Overridable Property CanShowSplashScreen As Boolean
+    Private _authorizationService As AuthorizationService(Of UserPermissions)
 
     Private _productPage As ProductView
     Private _employeePage As EmployeeView
@@ -24,6 +24,7 @@ Public Class Page2ViewModel
     End Property
 
     Public Sub New()
+        _authorizationService = New AuthorizationService(Of UserPermissions)(RepoPermissions.UserPermission)
         _requestPage = New RequestView()
         CurrentPage = _requestPage
     End Sub
@@ -56,4 +57,9 @@ Public Class Page2ViewModel
         CurrentPage = TryCast(page, Page)
     End Sub
 
+    Public ReadOnly Property HasAdminPermission As Boolean
+        Get
+            Return _authorizationService.HasPermission(Function(p) p.IsAdmin)
+        End Get
+    End Property
 End Class

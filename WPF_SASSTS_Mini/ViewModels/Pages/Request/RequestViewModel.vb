@@ -88,7 +88,7 @@ Public Class RequestViewModel
     <Command>
     Public Sub RefreshBasket()
         BasketItemViewList.Clear()
-        For i As Integer = 1 To 8
+        For i As Integer = 1 To 15
             Dim product = New GetProduct() With
             {
                 .Id = 1,

@@ -41,15 +41,42 @@
                         Header="Ürünler" 
                         HorizontalContentAlignment="Center" 
                         GlyphPosition="Top" 
-                        Margin="0,4,0,4" 
-                        Glyph="/Resources/Images/product.svg" />
+                        Margin="0,4,0,4"
+                        Glyph="/Resources/Images/product.svg">
+                        <dxa:AccordionItem.Style>
+                            <Style TargetType="dxa:AccordionItem">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasAdminPermission}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding HasAdminPermission}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxa:AccordionItem.Style>
+
+                    </dxa:AccordionItem>
                     <dxa:AccordionItem 
                         Command="{Binding ShowEmployeeCommand}"           
                         Header="Personel Listesi" 
                         HorizontalContentAlignment="Center" 
                         GlyphPosition="Top" 
                         Margin="0,4,0,4" 
-                        Glyph="/Resources/Images/employee.svg"/>
+                        Glyph="/Resources/Images/employee.svg">
+                        <dxa:AccordionItem.Style>
+                            <Style TargetType="dxa:AccordionItem">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasAdminPermission}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding HasAdminPermission}" Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxa:AccordionItem.Style>
+                    </dxa:AccordionItem>
                     <dxa:AccordionItem 
                         Command="{Binding ShowRequestCommand}"   
                         Header="Talep İşlemi" 

@@ -4,12 +4,46 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:local="clr-namespace:WPF_SASSTS_Mini" 
-                 xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                 xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                  Title="MainWindow" 
                  WindowStartupLocation="CenterScreen"
                  ShowGlow="False"
                  Height="600" 
                  Width="1000">
+    <Window.Resources>
+        <local:Base64ToImageConverter x:Key="Base64ToImageConverter"/>
+    </Window.Resources>
+    <dx:ThemedWindow.HeaderItems>
+        <dx:HeaderItemControl dxb:BarManager.MenuShowMouseButton="LeftButton" >
+            <dxb:BarManager.DXContextMenu>
+                <dxb:PopupControlContainer >
+                    <StackPanel >
+                        <StackPanel Orientation="Horizontal" Margin="20">
+                            <Border DockPanel.Dock="Left">
+                                <Ellipse Height="50" Width="50" Stroke="Gray" StrokeThickness="1" Margin="0,0,0,0">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding UserImage, Converter={StaticResource Base64ToImageConverter}}"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Border>
+                            <StackPanel Margin="14,0,26,0">
+                                <TextBlock Text="{Binding Username}" FontSize="14"/>
+                                <TextBlock Text="{Binding RoleName}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Button HorizontalContentAlignment="Center" Command="{Binding LogoutCommand}">Çıkış Yap</Button>
+                    </StackPanel>
+                </dxb:PopupControlContainer>
+            </dxb:BarManager.DXContextMenu>
+            <Border Margin="2" DockPanel.Dock="Left" Background="Transparent">
+                <Ellipse Height="20" Width="20" Stroke="Gray" StrokeThickness="1" Margin="0,0,0,0">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding UserImage, Converter={StaticResource Base64ToImageConverter}}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Border>
+        </dx:HeaderItemControl>
+    </dx:ThemedWindow.HeaderItems>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -32,7 +66,8 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="LeftToRight">
                 <dxe:ComboBoxEdit VerticalAlignment="Center" Width="200" 
                                   ItemsSource="{Binding Source={x:Static dx:Theme.Themes}}"
-                                  DisplayMember="Name" 
+                                  DisplayMember="Name"
+                                  IsReadOnly="False"
                                   ValueMember="Name" 
                                   Name="comboBox"
                                   >

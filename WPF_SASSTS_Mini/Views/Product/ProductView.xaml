@@ -25,25 +25,13 @@
                         <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel FlowDirection="RightToLeft" Grid.Column="0" Orientation="Horizontal">
-                        <dx:SimpleButton Margin="1" BorderThickness="0" Command="{Binding RefreshBasketCommand}">
-                        <StackPanel Orientation="Vertical">
-                            <Image  Width="22" Source="/Resources/Images/Refresh.png" />
-                            <Label FontSize="11" Margin="0,-4,0,0">Yenile</Label>
-                        </StackPanel>
-                    </dx:SimpleButton>
-                    <dx:SimpleButton IsEnabled="{Binding RemoveBasketBtnEnabled}" Margin="1" BorderThickness="0" Command="{Binding DeleteBasketCommand}">
-                        <StackPanel Orientation="Vertical">
-                            <Image Width="22" Source="/Resources/Images/Delete.png" />
-                            <Label FontSize="11" Margin="0,-4,0,0">Sepeti Sil</Label>
-                        </StackPanel>
-                    </dx:SimpleButton>
-                    <dx:SimpleButton Margin="1" BorderThickness="0" Command="{Binding AddProductCommand}">
-                        <StackPanel Orientation="Vertical">
-                            <Image Width="22" Source="/Resources/Images/Add.png" />
-                            <Label FontSize="11" Margin="0,-4,0,0">Ürün Ekle</Label>
-                        </StackPanel>
-                    </dx:SimpleButton>
-                </StackPanel>
+                        <dx:SimpleButton Margin="1" BorderThickness="0">
+                            <StackPanel Orientation="Vertical">
+                                <Image  Width="22" Source="/Resources/Images/Refresh.png" />
+                                <Label FontSize="11" Margin="0,-4,0,0">Yenile</Label>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </StackPanel>
                 </Grid>
             </dxlc:LayoutControl>
         </DataTemplate>

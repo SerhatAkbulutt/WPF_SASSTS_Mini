@@ -3,14 +3,65 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WPF_SASSTS_Mini"
+      xmlns:local="clr-namespace:WPF_SASSTS_Mini" 
+      xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page3">
     <Page.DataContext>
         <local:Page3ViewModel/>
     </Page.DataContext>
-    <Grid>
-        <TextBlock Margin="100" Text="Page 3" Foreground="red"></TextBlock>
+    <Grid x:Name="LayoutRoot" Background="White">
+        <dxlc:LayoutControl Orientation="Vertical" Background="#FFEAEAEA">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Group 1" IsCollapsible="True">
+                        <dxlc:LayoutItem Label="Item 1:" VerticalAlignment="Stretch">
+                            <TextBox/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutGroup Orientation="Vertical" dxlc:LayoutControl.AllowHorizontalSizing="True">
+                            <dxlc:LayoutItem Label="Item 2:" VerticalAlignment="Stretch">
+                                <TextBox/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Item 3:" VerticalAlignment="Stretch">
+                                <TextBox/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Item 4:"  VerticalAlignment="Stretch" dxlc:LayoutControl.AllowVerticalSizing="True">
+                        <TextBox/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup View="Tabs" dxlc:LayoutControl.AllowHorizontalSizing="True">
+                    <dxlc:LayoutGroup Header="Tab 1" Orientation="Vertical">
+                        <dxlc:LayoutItem Label="Item 5:">
+                            <TextBox/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Item 6:" VerticalAlignment="Stretch">
+                            <TextBox/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Header="Tab 2" Orientation="Vertical">
+                        <dxlc:LayoutItem Label="Item 7:">
+                            <TextBox/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Item 8:">
+                            <TextBox/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="Item 9:" HorizontalAlignment="Left">
+                    <TextBox Width="100"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Item 10:">
+                    <TextBox/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Item 11:" HorizontalAlignment="Right">
+                    <TextBox Width="100"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
     </Grid>
 </Page>

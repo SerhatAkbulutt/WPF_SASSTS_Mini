@@ -70,7 +70,7 @@
                     </ItemsControl>
                 </Grid>
             </dxdo:LayoutPanel>
-            <dxdo:LayoutPanel MinWidth="200" ItemWidth="2*" AllowClose="False" ShowPinButton="False" AllowMove="False" CaptionTemplate="{StaticResource PanelHeader2}">
+            <dxdo:LayoutPanel MinWidth="200" ItemWidth="3*" AllowClose="False" ShowPinButton="False" AllowMove="False" CaptionTemplate="{StaticResource PanelHeader2}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="17"/>

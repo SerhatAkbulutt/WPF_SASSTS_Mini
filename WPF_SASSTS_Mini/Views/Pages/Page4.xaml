@@ -3,12 +3,38 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WPF_SASSTS_Mini"
+      xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+      xmlns:local="clr-namespace:WPF_SASSTS_Mini" 
+      xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page4">
-    <Grid>
-        <TextBlock Margin="100" Text="Page 4" Foreground="red"></TextBlock>
-
-    </Grid>
+    <DockPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto"
+                      Name="PART_Options"
+                      DockPanel.Dock="Right"
+                      dx:ScrollBarExtensions.ScrollBarMode="TouchOverlap"
+                      Focusable="False">
+        </ScrollViewer>
+        <dxlc:DockLayoutControl>
+            <GroupBox dxlc:DockLayoutControl.Dock="Top"
+               dxlc:DockLayoutControl.AllowVerticalSizing="True"
+               Height="70"
+               Header="GroupBox 1">
+            </GroupBox>
+            <GroupBox dxlc:DockLayoutControl.Dock="Left"
+               dxlc:DockLayoutControl.AllowVerticalSizing="True"
+               Header="GroupBox 2">
+            </GroupBox>
+            <GroupBox dxlc:DockLayoutControl.Dock="Right"
+               dxlc:DockLayoutControl.AllowVerticalSizing="True"
+               Header="GroupBox 3">
+            </GroupBox>
+            <GroupBox dxlc:DockLayoutControl.Dock="Client"
+               dxlc:DockLayoutControl.AllowVerticalSizing="True"
+               Header="GroupBox 4">
+            </GroupBox>
+        </dxlc:DockLayoutControl>
+    </DockPanel>
 </Page>

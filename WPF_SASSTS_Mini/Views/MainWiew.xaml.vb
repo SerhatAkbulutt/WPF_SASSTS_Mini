@@ -9,7 +9,7 @@ Partial Public Class MainView
         InitializeComponent()
         DataContext = New MainViewModel()
         ApplicationThemeHelper.ApplicationThemeName = Theme.Win11Light.Name
-        CurrentTheme.ThemeName = "Win10Light"
+        CurrentTheme.ThemeName = Theme.Win11Light.Name
         Theme.CachePaletteThemes = True
         Theme.RegisterPredefinedPaletteThemes()
     End Sub

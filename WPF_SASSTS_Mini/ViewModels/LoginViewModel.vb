@@ -87,6 +87,13 @@ Public Class LoginViewModel
             If resp IsNot Nothing AndAlso resp.Data IsNot Nothing AndAlso resp.Data.Token IsNot Nothing Then
                 Session.Username = Username
                 Session.Account = resp.Data.Session
+                Dim userPermissions As New UserPermissions() With {
+                    .IsAdmin = String.Equals(Session.Account.RoleName, "Admin", StringComparison.OrdinalIgnoreCase),
+                    .CanEdit = False,
+                    .CanDelete = True,
+                    .IsRequest = String.Equals(Session.Account.RoleName, "Personel", StringComparison.OrdinalIgnoreCase)
+                }
+                RepoPermissions.UserPermission = userPermissions
                 CurrentView.MainWindow = New MainView()
                 CurrentView.MainWindow.Show()
                 CurrentView.LoginWindow.Close()

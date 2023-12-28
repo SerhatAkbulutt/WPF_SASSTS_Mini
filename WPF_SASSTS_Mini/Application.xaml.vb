@@ -3,7 +3,7 @@
 Class Application
     Protected Overrides Sub OnStartup(e As StartupEventArgs)
         MyBase.OnStartup(e)
-        CurrentView.MainWindow = New MainView()
-        CurrentView.MainWindow.Show()
+        CurrentView.LoginWindow = New LoginView()
+        CurrentView.LoginWindow.Show()
     End Sub
 End Class

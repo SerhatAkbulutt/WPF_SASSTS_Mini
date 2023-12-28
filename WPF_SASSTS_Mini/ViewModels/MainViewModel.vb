@@ -4,12 +4,15 @@ Imports DevExpress.Xpf.Core
 
 Public Class MainViewModel
     Inherits ViewModelBase
-
     Private _page1 As Page1
     Private _page2 As Page2
     Private _page3 As Page3
     Private _page4 As Page4
     Private _page5 As Page5
+
+    Public Property Username As String
+    Public Property RoleName As String
+    Public Property UserImage As String
 
     Private _currenPage As Page
     Public Property CurrentPage() As Page
@@ -23,6 +26,9 @@ Public Class MainViewModel
     End Property
 
     Public Sub New()
+        Username = Session.Username
+        RoleName = Session.Account.RoleName
+        UserImage = Session.Account.Image
         _page2 = New Page2()
         CurrentPage = _page2
         Dim d = LoadCategoryAndUnit()
@@ -30,16 +36,16 @@ Public Class MainViewModel
 
     Public Async Function LoadCategoryAndUnit() As Task
         Dim apiService As New ApiService()
-        Dim resp As ResponseBody(Of List(Of Category)) = Await apiService.GetFunc(Of Category)("api/categories/getCategories")
-        If resp.StatusCode = 200 Then
+        Dim response As ResponseBody(Of List(Of Category)) = Await apiService.GetFunc(Of Category)("api/categories/getCategories")
+        If response.StatusCode = 200 Then
             RepoCategory.Categories.Clear()
-            For Each emp In resp.Data
+            For Each emp In response.Data
                 RepoCategory.Categories.Add(emp)
             Next
-            Dim resp2 As ResponseBody(Of List(Of Unit)) = Await apiService.GetFunc(Of Unit)("api/units/getUnits")
-            If resp2.StatusCode = 200 Then
+            Dim response2 As ResponseBody(Of List(Of Unit)) = Await apiService.GetFunc(Of Unit)("api/units/getUnits")
+            If response2.StatusCode = 200 Then
                 RepoUnit.Units.Clear()
-                For Each emp In resp2.Data
+                For Each emp In response2.Data
                     RepoUnit.Units.Add(emp)
                 Next
             Else
@@ -84,6 +90,14 @@ Public Class MainViewModel
     <Command>
     Public Sub ShowPage5()
         ShowPage(Of Page5)(_page5)
+    End Sub
+
+    <Command>
+    Public Sub Logout()
+        Session.Account = Nothing
+        CurrentView.LoginWindow = New LoginView()
+        CurrentView.LoginWindow.Show()
+        CurrentView.MainWindow.Close()
     End Sub
 
     Private Sub ShowPage(Of T As {Page, New})(ByRef page As T)
