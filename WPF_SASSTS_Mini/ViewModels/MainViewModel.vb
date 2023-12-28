@@ -16,17 +16,39 @@ Public Class MainViewModel
         Get
             Return _currenPage
         End Get
-        Set(ByVal value As Page)
+        Set(value As Page)
             _currenPage = value
             RaisePropertyChanged(NameOf(CurrentPage))
         End Set
     End Property
 
     Public Sub New()
-
         _page2 = New Page2()
         CurrentPage = _page2
+        Dim d = LoadCategoryAndUnit()
     End Sub
+
+    Public Async Function LoadCategoryAndUnit() As Task
+        Dim apiService As New ApiService()
+        Dim resp As ResponseBody(Of List(Of Category)) = Await apiService.GetFunc(Of Category)("api/categories/getCategories")
+        If resp.StatusCode = 200 Then
+            RepoCategory.Categories.Clear()
+            For Each emp In resp.Data
+                RepoCategory.Categories.Add(emp)
+            Next
+            Dim resp2 As ResponseBody(Of List(Of Unit)) = Await apiService.GetFunc(Of Unit)("api/units/getUnits")
+            If resp2.StatusCode = 200 Then
+                RepoUnit.Units.Clear()
+                For Each emp In resp2.Data
+                    RepoUnit.Units.Add(emp)
+                Next
+            Else
+                RepoUnit.Units.Clear()
+            End If
+        Else
+            RepoCategory.Categories.Clear()
+        End If
+    End Function
 
     <Command>
     Public Sub ThemeSelection(editValue As Object)

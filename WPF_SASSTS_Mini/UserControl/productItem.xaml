@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="productItem"
+﻿<UserControl x:Class="productItem" 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,10 +8,10 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              mc:Ignorable="d"
              dx:ThemeManager.ThemeName="{Binding Path=(local:CurrentTheme.ThemeName)}"
-             d:DesignHeight="34" d:DesignWidth="400">
+             d:DesignHeight="40" d:DesignWidth="400">
     <Grid HorizontalAlignment="Stretch" Margin="4,0,4,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="33"/>
+            <RowDefinition Height="39"/>
             <RowDefinition Height="1"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -22,12 +22,12 @@
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Image  Grid.Column="0" Height="32" Width="Auto" Stretch="Uniform" Source="/UserControl/laptop.png"/>
+            <Image Grid.Column="0" Height="24" Width="Auto" Source="{Binding ImagePath}"/>
             <TextBlock  Grid.Column="1" Text="{Binding ProductName}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock  Grid.Column="2" Text="Miktar :" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <dxe:SpinEdit  HorizontalAlignment="Center" Width="80" VerticalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="3" EditValue="" Margin="0,0,0,0" />
-            <dx:SimpleButton Grid.Column="4" Width="32" Height="28" FontSize="14"  BorderThickness="0" Foreground="#FFC85E5E" Content="X" FontFamily="Arial Rounded MT Bold" Click="ButtonRemove_Click"></dx:SimpleButton>
+            <TextBlock  Grid.Column="2" Margin="0,0,5,0" Text="Miktar : " VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
+            <dxe:SpinEdit  HorizontalAlignment="Left" Increment="1" MinValue="0" IsFloatValue="False" Width="80" VerticalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="3" EditValue="{Binding Quantity}" Margin="0,0,0,0" />
+            <dx:SimpleButton  Grid.Column="4" Width="32" Height="28" FontSize="14" Background="Transparent" BorderThickness="0" Foreground="#FFC85E5E" FontFamily="Arial Rounded MT Bold" Click="ButtonRemove_Click" Glyph="/Resources/Images/Delete.png" GlyphHeight="18" GlyphWidth="18"></dx:SimpleButton>
         </Grid>
-        <Border Grid.Row="1" Background="#EAEAEA"></Border>
+        <dx:SimpleButton Grid.Row="1" Height="1"></dx:SimpleButton>
     </Grid>
 </UserControl>

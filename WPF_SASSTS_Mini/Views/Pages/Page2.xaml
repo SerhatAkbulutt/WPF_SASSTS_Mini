@@ -41,10 +41,10 @@
 					RootItemDisplayMode="Item"
 					ShowPopupOnHover="True"
 					>
-                    <dxa:AccordionItem Command="{Binding ShowProductCommand}" Header="Ürünler" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/spreadsheet.svg" />
-                    <dxa:AccordionItem Command="{Binding ShowEmployeeCommand}" Header="Personel Listesi" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/gridcontacts.svg" />
-                    <dxa:AccordionItem Command="{Binding ShowRequestCommand}" Header="Talep İşlemi" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/scheduler.svg"  />
-                    <dxa:AccordionItem Command="{Binding ShowReportCommand}" Header="Raporlar" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/gridtasks.svg" />
+                    <dxa:AccordionItem Command="{Binding ShowProductCommand}" Header="Ürünler" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/Resources/Images/product.svg" />
+                    <dxa:AccordionItem Command="{Binding ShowEmployeeCommand}" Header="Personel Listesi" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/Resources/Images/employee.svg"/>
+                    <dxa:AccordionItem Command="{Binding ShowRequestCommand}" Header="Talep İşlemi" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/Resources/Images/request.svg"/>
+                    <dxa:AccordionItem Command="{Binding ShowReportCommand}" Header="Raporlar" HorizontalContentAlignment="Center" GlyphPosition="Top" Margin="0,4,0,4" Glyph="/Resources/Images/pdf.svg"/>
                 </dxa:AccordionControl>
             </dxdo:LayoutPanel>
             <dxdo:LayoutPanel
@@ -66,27 +66,6 @@
                         </dxwuin:FrameNavigationService.SplashScreenService>
                     </dxwuin:FrameNavigationService>
                 </dxmvvm:Interaction.Behaviors>
-                <!--<dxwui:NavigationFrame Name="documentFrame" Content="{Binding CurrentPage}">
-                    <FrameworkElement.Resources>
-                        <ResourceDictionary>
-                            <Style
-									TargetType="{x:Type dxwui:PageAdornerControl}"
-									x:Key="{x:Type dxwui:PageAdornerControl}">
-                                <Setter
-										Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate
-												TargetType="{x:Type dxwui:PageAdornerControl}">
-                                            <ContentPresenter
-													Content="{TemplateBinding Content}" />
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ResourceDictionary>
-                    </FrameworkElement.Resources>
-                    
-                </dxwui:NavigationFrame>-->
             </dxdo:LayoutPanel>
         </dxdo:LayoutGroup>
     </dxdo:DockLayoutManager>

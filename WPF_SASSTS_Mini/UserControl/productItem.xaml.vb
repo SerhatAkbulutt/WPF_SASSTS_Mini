@@ -15,12 +15,12 @@ Public Class productItem
         RaiseEvent ButtonRemoveClick(Me, e)
     End Sub
 
-    Private _image As String
-    Public Property ImagePath() As String
+    Private _image As ImageSource
+    Public Property ImagePath() As ImageSource
         Get
             Return _image
         End Get
-        Set(value As String)
+        Set(value As ImageSource)
             _image = value
             OnPropertyChanged("ImagePath")
         End Set
@@ -37,7 +37,7 @@ Public Class productItem
         End Set
     End Property
 
-    Private _quantity As Integer = 0
+    Private _quantity As Integer = 1
     Public Property Quantity() As Integer
         Get
             Return _quantity
@@ -50,7 +50,6 @@ Public Class productItem
 
     Public Sub New()
         InitializeComponent()
-        ProductName = "Prodcut Name..."
         DataContext = Me
     End Sub
 

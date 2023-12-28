@@ -1,6 +1,5 @@
-﻿Class RequestView
+﻿Public Class EditProductDialog
     Public Sub New()
         InitializeComponent()
-        DataContext = New RequestViewModel()
     End Sub
 End Class

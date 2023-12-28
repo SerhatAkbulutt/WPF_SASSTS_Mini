@@ -1,5 +1,6 @@
 ﻿Imports DevExpress.Mvvm
 Imports DevExpress.Mvvm.DataAnnotations
+Imports DevExpress.Pdf.Native.BouncyCastle.Asn1.Ocsp
 
 Public Class Pages2ViewModel
     Inherits ViewModelBase
@@ -23,8 +24,8 @@ Public Class Pages2ViewModel
     End Property
 
     Public Sub New()
-        _employeePage = New EmployeeView()
-        CurrentPage = _employeePage
+        _requestPage = New RequestView()
+        CurrentPage = _requestPage
         CanShowSplashScreen = True
     End Sub
 

@@ -8,7 +8,6 @@ Public Class EmployeeViewModel
 
     Public Property Employees As ObservableCollection(Of Employee)
 
-
     Private _selectedEmployee As Employee
     Public Property SelectedEmployee() As Employee
         Get
@@ -47,9 +46,10 @@ Public Class EmployeeViewModel
 
     End Sub
 
+
+
     <Command>
     Public Async Function EmployeeUpdateCommand() As Task
-
         If SelectedEmployee IsNot Nothing Then
             Dim result = ThemedMessageBox.Show(title:="Personel Güncelleme", text:="Personoli Güncellemek İstiyor Musunuz?", messageBoxButtons:=MessageBoxButton.OKCancel, defaultButton:=MessageBoxResult.OK, icon:=MessageBoxImage.Information)
             If result = MessageBoxResult.OK Then
@@ -59,10 +59,7 @@ Public Class EmployeeViewModel
                 SelectedEmployee = Nothing
             End If
         End If
-
     End Function
-
-
 
     <Command>
     Public Async Function EmployeeDeleteCommand() As Task

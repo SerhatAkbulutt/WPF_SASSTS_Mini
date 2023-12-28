@@ -53,10 +53,8 @@
                     <dxmvvm:Interaction.Behaviors>
                         <dxmvvm:EventToCommand EventName="SelectionChanged" Command="{Binding SelectChangeEmployeeCommand}"/>
                     </dxmvvm:Interaction.Behaviors>
-
                 </dxg:GridControl>
             </dxdo:LayoutPanel>
-
             <dxdo:LayoutPanel ItemWidth="3*"      
                               AllowClose="False"
                               ShowCaption="False"	         
@@ -66,7 +64,6 @@
                     <dxlc:LayoutGroup Orientation="Vertical" Margin="0,0,1,0">
 
                         <Image Source="{Binding SelectedEmployee.Image, Converter={StaticResource Base64ToImageConverter}}" Width="100" Height="100" Margin="20,10,0,10"></Image>
-
 
                         <dxlc:LayoutItem Label="Ad :" Height="24" Margin="0,0,3,6">
                             <dxe:TextEdit Text="{Binding SelectedEmployee.EmployeeName}" Margin="10,0,0,0"/>

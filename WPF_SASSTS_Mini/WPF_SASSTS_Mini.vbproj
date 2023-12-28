@@ -1,72 +1,76 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <RootNamespace>WPF_SASSTS_Mini</RootNamespace>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<RootNamespace>WPF_SASSTS_Mini</RootNamespace>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="gridcontacts.svg" />
-    <None Remove="gridtasks.svg" />
-    <None Remove="null.png" />
-    <None Remove="scheduler.svg" />
-    <None Remove="spreadsheet.svg" />
-    <None Remove="UserControl\laptop.png" />
-    <None Remove="Views\logo.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Images\Add.png" />
+		<Resource Include="Resources\Images\Contact.png" />
+		<Resource Include="Resources\Images\ContactEdit.png" />
+		<Resource Include="Resources\Images\ContactNew.png" />
+		<Resource Include="Resources\Images\Delete.png" />
+		<Resource Include="Resources\Images\Download.png" />
+		<Resource Include="Resources\Images\laptop.png" />
+		<Resource Include="Resources\Images\employee.svg" />
+		<Resource Include="Resources\Images\gridtasks.svg" />
+		<Resource Include="Resources\Images\Laptop.svg" />
+		<Resource Include="Resources\Images\null.png" />
+		<Resource Include="Resources\Images\pdf.svg" />
+		<Resource Include="Resources\Images\Refresh.png" />
+		<Resource Include="Resources\Images\request.svg" />
+		<Resource Include="Resources\Images\product.svg" />
+		<Resource Include="Resources\Images\logo.png" />
+		<Resource Include="Resources\logo.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Import Include="System.Windows" />
-    <Import Include="System.Windows.Controls" />
-    <Import Include="System.Windows.Data" />
-    <Import Include="System.Windows.Documents" />
-    <Import Include="System.Windows.Input" />
-    <Import Include="System.Windows.Media" />
-    <Import Include="System.Windows.Media.Imaging" />
-    <Import Include="System.Windows.Navigation" />
-    <Import Include="System.Windows.Shapes" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="devexpress.wpf.accordion" Version="23.1.6" />
-    <PackageReference Include="DevExpress.Wpf.Core" Version="23.1.6" />
-    <PackageReference Include="devexpress.wpf.docking" Version="23.1.6" />
-    <PackageReference Include="devexpress.wpf.grid.core" Version="23.1.6" />
-    <PackageReference Include="devexpress.wpf.layoutcontrol" Version="23.1.6" />
-    <PackageReference Include="devexpress.wpf.propertygrid" Version="23.1.6" />
-    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="23.1.6" />
-    <PackageReference Include="FluentValidation" Version="11.8.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<Import Include="System.Windows" />
+		<Import Include="System.Windows.Controls" />
+		<Import Include="System.Windows.Data" />
+		<Import Include="System.Windows.Documents" />
+		<Import Include="System.Windows.Input" />
+		<Import Include="System.Windows.Media" />
+		<Import Include="System.Windows.Media.Imaging" />
+		<Import Include="System.Windows.Navigation" />
+		<Import Include="System.Windows.Shapes" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="My Project\NewFolder\" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="devexpress.wpf.accordion" Version="23.1.6" />
+		<PackageReference Include="DevExpress.Wpf.Core" Version="23.1.6" />
+		<PackageReference Include="devexpress.wpf.docking" Version="23.1.6" />
+		<PackageReference Include="devexpress.wpf.grid.core" Version="23.1.6" />
+		<PackageReference Include="devexpress.wpf.layoutcontrol" Version="23.1.6" />
+		<PackageReference Include="devexpress.wpf.propertygrid" Version="23.1.6" />
+		<PackageReference Include="DevExpress.Wpf.Themes.All" Version="23.1.6" />
+		<PackageReference Include="FluentValidation" Version="11.8.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="gridcontacts.svg" />
-    <Resource Include="gridtasks.svg" />
-    <Resource Include="null.png" />
-    <Resource Include="scheduler.svg" />
-    <Resource Include="spreadsheet.svg" />
-    <Resource Include="UserControl\laptop.png" />
-    <Resource Include="Views\logo.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="My Project\NewFolder\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="My Project\Resources.Designer.vb">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="My Project\Resources.Designer.vb">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Request\AddProductDialog.xaml.vb">
+		  <SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="My Project\Resources.resx">
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="My Project\Resources.resx">
+			<CustomToolNamespace>My.Resources</CustomToolNamespace>
+			<Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.vb</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 </Project>

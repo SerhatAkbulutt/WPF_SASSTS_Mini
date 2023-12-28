@@ -23,7 +23,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <Image Source="/Views/logo.png" Width="140" Margin="0,30,0,0" />
+            <Image Source="/Resources/logo.png" Width="140" Margin="0,30,0,0" />
         </StackPanel>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

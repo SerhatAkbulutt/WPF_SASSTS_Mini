@@ -5,7 +5,7 @@ Imports DevExpress.Xpf.Core
 Class Application
     Protected Overrides Sub OnStartup(e As StartupEventArgs)
         MyBase.OnStartup(e)
-        CurrentView.LoginWindow = New LoginView()
-        CurrentView.LoginWindow.Show()
+        CurrentView.MainWindow = New MainWindow()
+        CurrentView.MainWindow.Show()
     End Sub
 End Class
