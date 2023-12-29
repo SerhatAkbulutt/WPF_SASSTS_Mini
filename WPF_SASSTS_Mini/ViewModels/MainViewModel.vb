@@ -29,8 +29,8 @@ Public Class MainViewModel
         Username = Session.Username
         RoleName = Session.Account.RoleName
         UserImage = Session.Account.Image
-        _page2 = New Page2()
-        CurrentPage = _page2
+        _page1 = New Page1()
+        CurrentPage = _page1
         Dim d = LoadCategoryAndUnit()
     End Sub
 
@@ -64,7 +64,8 @@ Public Class MainViewModel
         Theme.CachePaletteThemes = True
         Theme.RegisterPredefinedPaletteThemes()
         _page2 = New Page2()
-        CurrentPage = _page2
+        _page1 = New Page1()
+        CurrentPage = _page1
     End Sub
 
     <Command>
