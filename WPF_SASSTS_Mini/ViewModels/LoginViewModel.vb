@@ -60,6 +60,7 @@ Public Class LoginViewModel
             Theme.CachePaletteThemes = True
             Theme.RegisterPredefinedPaletteThemes()
         End If
+        Dim test = Login()
     End Sub
 
     <Command>

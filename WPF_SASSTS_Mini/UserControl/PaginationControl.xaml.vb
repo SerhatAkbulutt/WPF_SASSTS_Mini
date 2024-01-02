@@ -1,83 +1,104 @@
 ﻿Imports System.Collections.ObjectModel
 Imports System.ComponentModel
 Imports System.Windows.Controls.Primitives
-Imports DevExpress.Drawing.Printing.Internal.DXPageSizeInfo
 Imports DevExpress.Xpf.Core
 
-Public Class PaginationView
-    Implements INotifyPropertyChanged
+Public Class PaginationControl
 
     Private firstBtn As SimpleButton
     Private secondBtn As SimpleButton
     Private thirdBtn As SimpleButton
     Private fourthBtn As SimpleButton
     Private fifthBtn As SimpleButton
-    Private Pointer As Integer
     Private BackupBtn As SimpleButton
 
-    Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+    Public Property lblStart As TextBlock = New TextBlock() With
+    {
+        .Text = "⬝⬝⬝",
+        .FontFamily = New FontFamily("Segoe UI Light"),
+        .FontSize = 9,
+        .Margin = New Thickness(2),
+        .VerticalAlignment = VerticalAlignment.Center
+    }
+    Public Property lblEnd As TextBlock = New TextBlock() With
+    {
+        .Text = "⬝⬝⬝",
+        .FontFamily = New FontFamily("Segoe UI Light"),
+        .FontSize = 9,
+        .Margin = New Thickness(2),
+        .VerticalAlignment = VerticalAlignment.Center
+    }
 
-    Public Property ComboBoxList As ObservableCollection(Of Integer)
+    Public Shared ReadOnly PageCountProperty As DependencyProperty = DependencyProperty.Register("PageCount", GetType(Integer), GetType(PaginationControl), New PropertyMetadata(1, AddressOf PageCountPropertyChanged))
 
-    Private Sub NotifyPropertyChanged(propertyName As String)
-        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+    Private Shared Sub PageCountPropertyChanged(d As DependencyObject, e As DependencyPropertyChangedEventArgs)
+        Dim paginationControl = TryCast(d, PaginationControl)
+        If paginationControl IsNot Nothing Then
+            paginationControl.GeneratePageButtons()
+        End If
     End Sub
-    Private _pageSize As String
-    Public Property PageSize As Integer
+
+    Public Property PageCount() As Integer
         Get
-            Return _pageSize
+            Return CType(GetValue(PageCountProperty), Integer)
         End Get
         Set(value As Integer)
-            _pageSize = value
-            Initialize()
-            NotifyPropertyChanged("PageSize")
+            SetValue(PageCountProperty, value)
         End Set
     End Property
 
-    Private _directPageCurrent As Integer
-    Public Property DirectPageCurrent() As Integer
+    Public Shared ReadOnly CurrentPageProperty As DependencyProperty = DependencyProperty.Register("CurrentPage", GetType(Integer), GetType(PaginationControl), New PropertyMetadata(AddressOf OnCurrentPageChanged))
+
+    Public Property CurrentPage As Integer
         Get
-            Return _directPageCurrent
+            Return DirectCast(GetValue(CurrentPageProperty), Integer)
         End Get
         Set(value As Integer)
-            _directPageCurrent = value
+            SetValue(CurrentPageProperty, value)
         End Set
     End Property
 
-    Public Property lblRange As TextBlock = New TextBlock() With
-    {
-        .Text = "⬝⬝⬝",
-        .FontFamily = New FontFamily("Segoe UI Light"),
-        .FontSize = 9,
-        .Margin = New Thickness(2),
-        .VerticalAlignment = VerticalAlignment.Center
-    }
-    Public Property lblRange2 As TextBlock = New TextBlock() With
-    {
-        .Text = "⬝⬝⬝",
-        .FontFamily = New FontFamily("Segoe UI Light"),
-        .FontSize = 9,
-        .Margin = New Thickness(2),
-        .VerticalAlignment = VerticalAlignment.Center
-    }
-    Private _currentPage As Integer
-    Public Property CurrentPage() As Integer
+    Public Shared ReadOnly PointerProperty As DependencyProperty = DependencyProperty.Register("Pointer", GetType(Integer), GetType(PaginationControl))
+
+    Public Property Pointer As Integer
         Get
-            Return _currentPage
+            Return DirectCast(GetValue(PointerProperty), Integer)
         End Get
         Set(value As Integer)
-            _currentPage = value
-            NotifyPropertyChanged("CurrentPage")
+            SetValue(PointerProperty, value)
         End Set
     End Property
 
-    Private Sub GenerateButtons()
+
+    Public Shared ReadOnly DirectPageProperty As DependencyProperty = DependencyProperty.Register("DirectPage", GetType(Integer), GetType(PaginationControl))
+
+    Public Property DirectPage As Integer
+        Get
+            Return DirectCast(GetValue(DirectPageProperty), Integer)
+        End Get
+        Set(value As Integer)
+            SetValue(DirectPageProperty, value)
+        End Set
+    End Property
+
+    Public Sub New()
+        InitializeComponent()
+        GeneratePageButtons()
+    End Sub
+
+    Private Shared Sub OnCurrentPageChanged(d As DependencyObject, e As DependencyPropertyChangedEventArgs)
+        Dim newCurrentPage As Integer = DirectCast(e.NewValue, Integer)
+    End Sub
+
+    Private Sub GeneratePageButtons()
         stkPanel.Children.Clear()
-        btnNext.IsEnabled = False
-        btnPrev.IsEnabled = False
-        If PageSize < 6 Then
-            If PageSize > 0 Then
-                For index = 1 To PageSize
+        CurrentPage = 1
+        Pointer = 1
+        buttonPrev.IsEnabled = False
+        buttonNext.IsEnabled = False
+        If PageCount < 6 Then
+            If PageCount > 0 Then
+                For index = 1 To PageCount
                     Dim simpleBtn As SimpleButton = New SimpleButton() With
                     {
                         .Content = index,
@@ -154,45 +175,26 @@ Public Class PaginationView
             thirdBtn.AddHandler(ButtonBase.ClickEvent, New RoutedEventHandler(AddressOf ThirdButton_Click))
             fourthBtn.AddHandler(ButtonBase.ClickEvent, New RoutedEventHandler(AddressOf FourthButton_Click))
             fifthBtn.AddHandler(ButtonBase.ClickEvent, New RoutedEventHandler(AddressOf FifthButton_Click))
-            stkPanel.Children.Add(lblRange)
+            stkPanel.Children.Add(lblStart)
             stkPanel.Children.Add(firstBtn)
             stkPanel.Children.Add(secondBtn)
             stkPanel.Children.Add(thirdBtn)
             stkPanel.Children.Add(fourthBtn)
             stkPanel.Children.Add(fifthBtn)
-            stkPanel.Children.Add(lblRange2)
+            stkPanel.Children.Add(lblEnd)
             CurrentBtn()
         End If
-        If PageSize > 5 Then
-            lblRangeHide(lblRange)
-            btnNext.IsEnabled = True
+        If PageCount > 5 Then
+            lblRangeHide(lblStart)
+            buttonNext.IsEnabled = True
         End If
 
     End Sub
 
-    Private Sub CustomButton_Click(sender As Object, e As RoutedEventArgs)
-        Dim currentText = sender.Content.ToString()
+    Private Sub FifthButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim currentText = fifthBtn.Content.ToString()
         CurrentPage = Convert.ToUInt32(currentText)
-        BorderShow(sender)
-    End Sub
-
-    Private Sub FirstButton_Click(sender As Object, e As RoutedEventArgs)
-        Dim currentText = firstBtn.Content.ToString()
-        CurrentPage = Convert.ToUInt32(currentText)
-        Update()
-        CurrentBtn()
-    End Sub
-
-    Private Sub SecondButton_Click(sender As Object, e As RoutedEventArgs)
-        Dim currentText = secondBtn.Content.ToString()
-        CurrentPage = Convert.ToUInt32(currentText)
-        Update()
-        CurrentBtn()
-    End Sub
-
-    Private Sub ThirdButton_Click(sender As Object, e As RoutedEventArgs)
-        Dim currentText = thirdBtn.Content.ToString()
-        CurrentPage = Convert.ToUInt32(currentText)
+        DirectPage = CurrentPage
         Update()
         CurrentBtn()
     End Sub
@@ -200,27 +202,40 @@ Public Class PaginationView
     Private Sub FourthButton_Click(sender As Object, e As RoutedEventArgs)
         Dim currentText = fourthBtn.Content.ToString()
         CurrentPage = Convert.ToUInt32(currentText)
+        DirectPage = CurrentPage
         Update()
         CurrentBtn()
     End Sub
 
-    Private Sub FifthButton_Click(sender As Object, e As RoutedEventArgs)
-        Dim currentText = fifthBtn.Content.ToString()
+    Private Sub ThirdButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim currentText = thirdBtn.Content.ToString()
         CurrentPage = Convert.ToUInt32(currentText)
+        DirectPage = CurrentPage
         Update()
         CurrentBtn()
     End Sub
 
-    Public Sub New()
-        InitializeComponent()
-        DataContext = Me
-        Initialize()
+    Private Sub SecondButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim currentText = secondBtn.Content.ToString()
+        CurrentPage = Convert.ToUInt32(currentText)
+        DirectPage = CurrentPage
+        Update()
+        CurrentBtn()
     End Sub
 
-    Public Sub Initialize()
-        Pointer = 1
-        CurrentPage = 1
-        GenerateButtons()
+    Private Sub FirstButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim currentText = firstBtn.Content.ToString()
+        CurrentPage = Convert.ToUInt32(currentText)
+        DirectPage = CurrentPage
+        Update()
+        CurrentBtn()
+    End Sub
+
+    Private Sub CustomButton_Click(sender As Object, e As RoutedEventArgs)
+        Dim currentText = sender.Content.ToString()
+        CurrentPage = Convert.ToUInt32(currentText)
+        DirectPage = CurrentPage
+        BorderShow(sender)
     End Sub
 
     Private Sub lblRangeHide(label As TextBlock)
@@ -230,13 +245,12 @@ Public Class PaginationView
     Private Sub lblRangeShow(label As TextBlock)
         label.Visibility = Visibility.Visible
     End Sub
-
     Private Sub CurrentBtn()
         Select Case Pointer
             Case 1
                 BorderShow(firstBtn)
-                lblRangeHide(lblRange)
-                lblRangeShow(lblRange2)
+                lblRangeHide(lblStart)
+                lblRangeShow(lblEnd)
                 firstBtn.Content = 1
                 secondBtn.Content = 2
                 thirdBtn.Content = 3
@@ -245,8 +259,8 @@ Public Class PaginationView
 
             Case 2
                 BorderShow(secondBtn)
-                lblRangeHide(lblRange)
-                lblRangeShow(lblRange2)
+                lblRangeHide(lblStart)
+                lblRangeShow(lblEnd)
                 firstBtn.Content = 1
                 secondBtn.Content = 2
                 thirdBtn.Content = 3
@@ -261,35 +275,35 @@ Public Class PaginationView
                 fourthBtn.Content = CurrentPage + 1
                 fifthBtn.Content = CurrentPage + 2
                 If CurrentPage - 2 = 1 Then
-                    lblRangeHide(lblRange)
+                    lblRangeHide(lblStart)
                 Else
-                    lblRangeShow(lblRange)
+                    lblRangeShow(lblStart)
                 End If
-                If CurrentPage + 2 = PageSize Then
-                    lblRangeHide(lblRange2)
+                If CurrentPage + 2 = PageCount Then
+                    lblRangeHide(lblEnd)
                 Else
-                    lblRangeShow(lblRange2)
+                    lblRangeShow(lblEnd)
                 End If
 
             Case 4
                 BorderShow(fourthBtn)
-                lblRangeHide(lblRange2)
-                lblRangeShow(lblRange)
-                firstBtn.Content = PageSize - 4
-                secondBtn.Content = PageSize - 3
-                thirdBtn.Content = PageSize - 2
-                fourthBtn.Content = PageSize - 1
-                fifthBtn.Content = PageSize
+                lblRangeHide(lblEnd)
+                lblRangeShow(lblStart)
+                firstBtn.Content = PageCount - 4
+                secondBtn.Content = PageCount - 3
+                thirdBtn.Content = PageCount - 2
+                fourthBtn.Content = PageCount - 1
+                fifthBtn.Content = PageCount
 
             Case 5
                 BorderShow(fifthBtn)
-                lblRangeHide(lblRange2)
-                lblRangeShow(lblRange)
-                firstBtn.Content = PageSize - 4
-                secondBtn.Content = PageSize - 3
-                thirdBtn.Content = PageSize - 2
-                fourthBtn.Content = PageSize - 1
-                fifthBtn.Content = PageSize
+                lblRangeHide(lblEnd)
+                lblRangeShow(lblStart)
+                firstBtn.Content = PageCount - 4
+                secondBtn.Content = PageCount - 3
+                thirdBtn.Content = PageCount - 2
+                fourthBtn.Content = PageCount - 1
+                fifthBtn.Content = PageCount
         End Select
     End Sub
 
@@ -303,12 +317,11 @@ Public Class PaginationView
         BackupBtn = btn
     End Sub
 
-    Private Sub btnPrev_Click(sender As Object, e As RoutedEventArgs) Handles btnPrev.Click
-        PrevPage()
-    End Sub
-
-    Private Sub btnNext_Click(sender As Object, e As RoutedEventArgs) Handles btnNext.Click
+    Private Sub buttonNext_Click(sender As Object, e As RoutedEventArgs) Handles buttonNext.Click
         NextPage()
+    End Sub
+    Private Sub btnPrev_Click(sender As Object, e As RoutedEventArgs) Handles buttonPrev.Click
+        PrevPage()
     End Sub
 
     Private Sub NextPage()
@@ -324,26 +337,26 @@ Public Class PaginationView
     End Sub
 
     Private Sub Update()
-        txtCurrentPage.Text = CurrentPage
-        If CurrentPage = PageSize Or PageSize < 2 Then
-            btnNext.IsEnabled = False
+        DirectPage = CurrentPage
+        If CurrentPage = PageCount Or PageCount < 2 Then
+            buttonNext.IsEnabled = False
         Else
-            btnNext.IsEnabled = True
+            buttonNext.IsEnabled = True
         End If
-        If CurrentPage = 1 Or PageSize < 2 Then
-            btnPrev.IsEnabled = False
+        If CurrentPage = 1 Or PageCount < 2 Then
+            buttonPrev.IsEnabled = False
         Else
-            btnPrev.IsEnabled = True
+            buttonPrev.IsEnabled = True
         End If
-        If CurrentPage = 1 Or CurrentPage = 2 Or CurrentPage = PageSize - 1 Or CurrentPage = PageSize Then
+        If CurrentPage = 1 Or CurrentPage = 2 Or CurrentPage = PageCount - 1 Or CurrentPage = PageCount Then
             Select Case CurrentPage
                 Case 1
                     Pointer = 1
                 Case 2
                     Pointer = 2
-                Case PageSize - 1
+                Case PageCount - 1
                     Pointer = 4
-                Case PageSize
+                Case PageCount
                     Pointer = 5
             End Select
         Else
@@ -351,10 +364,4 @@ Public Class PaginationView
         End If
     End Sub
 
-    Private Sub BtnDirect_Click(sender As Object, e As RoutedEventArgs) Handles BtnDirect.Click
-        Dim page = DirectPageCurrent
-        If PageSize < DirectPageCurrent Then
-
-        End If
-    End Sub
 End Class

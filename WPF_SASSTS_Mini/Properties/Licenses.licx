@@ -3,3 +3,4 @@ DevExpress.Xpf.PropertyGrid.PropertyGridControl, DevExpress.Xpf.PropertyGrid.v23
 DevExpress.Xpf.Docking.DockLayoutManager, DevExpress.Xpf.Docking.v23.1, Version=23.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.LayoutControl.DataLayoutControl, DevExpress.Xpf.LayoutControl.v23.1, Version=23.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.LayoutControl.DockLayoutControl, DevExpress.Xpf.LayoutControl.v23.1, Version=23.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.NavBar.NavBarControl, DevExpress.Xpf.NavBar.v23.1, Version=23.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

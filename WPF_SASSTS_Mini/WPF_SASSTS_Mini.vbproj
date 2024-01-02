@@ -46,6 +46,7 @@
 		<PackageReference Include="devexpress.wpf.docking" Version="23.1.6" />
 		<PackageReference Include="devexpress.wpf.grid.core" Version="23.1.6" />
 		<PackageReference Include="devexpress.wpf.layoutcontrol" Version="23.1.6" />
+		<PackageReference Include="devexpress.wpf.navbar" Version="23.1.6" />
 		<PackageReference Include="devexpress.wpf.propertygrid" Version="23.1.6" />
 		<PackageReference Include="DevExpress.Wpf.Themes.All" Version="23.1.6" />
 		<PackageReference Include="FluentValidation" Version="11.8.1" />

@@ -5,7 +5,7 @@ Public Class BasketItemView
 
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
-    Protected Sub OnPropertyChanged(propName As String)
+    Protected Sub NotifyPropertyChanged(propName As String)
         RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propName))
     End Sub
 
@@ -23,7 +23,7 @@ Public Class BasketItemView
         End Get
         Set(value As BasketItem)
             _item = value
-            OnPropertyChanged("BasketItem")
+            NotifyPropertyChanged("BasketItem")
         End Set
     End Property
 
