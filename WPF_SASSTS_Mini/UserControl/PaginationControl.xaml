@@ -11,10 +11,10 @@
 
     <Grid DataContext="{Binding ElementName=TheControl}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" VerticalAlignment="Center" MinWidth="100" Text="{Binding PageCount, StringFormat='Toplam Sayfa Sayısı : {0}'}"/>
+        <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0" MinWidth="100" Text="{Binding PageCount, StringFormat='Sayfa Sayısı : {0}'}"/>
         <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft"  >
             <dx:SimpleButton x:Name="buttonDirectPage" Margin="10,0,0,0" CornerRadius="5" Content="Git" Height="28"/>
             <TextBox x:Name="txtCurrentPage" MinWidth="40" Height="24" VerticalContentAlignment="Center" Text="{Binding  DirectPage}" HorizontalContentAlignment="Center"  Margin="4,0,40,0"/>

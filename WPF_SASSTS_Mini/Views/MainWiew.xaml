@@ -57,11 +57,11 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal" FlowDirection="LeftToRight">
                 <dx:SimpleButton Command="{Binding ShowPage1Command}" Content="Page 1" Height="30" Width="100" Margin="4" />
-                <dx:SimpleButton Command="{Binding ShowPage2Command}" Content="Page 2" Height="30" Width="100" Margin="4" />
+                <dx:SimpleButton Command="{Binding ShowPage2Command}" Content="Request" Height="30" Width="100" Margin="4" />
                 <dx:SimpleButton Command="{Binding ShowPage3Command}" Content="Page 3" Height="30" Width="100" Margin="4" />
                 <dx:SimpleButton Command="{Binding ShowPage4Command}" Content="Page 4" Height="30" Width="100" Margin="4" />
                 <dx:SimpleButton Command="{Binding ShowPage5Command}" Content="Page 5" Height="30" Width="100" Margin="4" />
-
+                <dx:SimpleButton Command="{Binding ShowPage6Command}" Content="Report" Height="30" Width="100" Margin="4" />
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="LeftToRight">
                 <dxe:ComboBoxEdit VerticalAlignment="Center" Width="200" 

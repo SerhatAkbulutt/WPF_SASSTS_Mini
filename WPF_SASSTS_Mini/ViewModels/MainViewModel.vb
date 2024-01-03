@@ -9,6 +9,7 @@ Public Class MainViewModel
     Private _page3 As Page3
     Private _page4 As Page4
     Private _page5 As Page5
+    Private _page6 As Page6
 
     Public Property Username As String
     Public Property RoleName As String
@@ -91,6 +92,11 @@ Public Class MainViewModel
     <Command>
     Public Sub ShowPage5()
         ShowPage(Of Page5)(_page5)
+    End Sub
+
+    <Command>
+    Public Sub ShowPage6()
+        ShowPage(Of Page6)(_page6)
     End Sub
 
     <Command>

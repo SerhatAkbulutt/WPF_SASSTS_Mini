@@ -1,10 +1,11 @@
-﻿<Page xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+﻿<Page xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
       x:Class="Page1"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WPF_SASSTS_Mini"
+      xmlns:local="clr-namespace:WPF_SASSTS_Mini" 
+      xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
       mc:Ignorable="d" 
       Name="Page1Window"
       d:DesignHeight="450" d:DesignWidth="800"
@@ -28,6 +29,25 @@
             <ContentControl Width="Auto" Margin="0" Grid.Row="1" >
                 <TextBlock FontSize="20" Text="{Binding Test}" MinWidth="200" MinHeight="30" Foreground="Brown" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </ContentControl>
+            <dxlc:LayoutControl Grid.Column="1" Grid.Row="1">
+                <dxg:GridControl x:Name="grid2"  ShowBorder="False" ItemsSource="{Binding ReportList}" SelectionMode="Row" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True">
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowUpdateRowButtons="OnCellValueChange"
+                          AllowScrollAnimation="True"
+                          AutoWidth="True"
+                          ShowDataNavigator="False"                                   
+                          ShowVerticalLines="False"                                   
+                          ShowHorizontalLines="False"                                     
+                          ShowIndicator="False"  
+                          NavigationStyle="Row"/>
+                    </dxg:GridControl.View>
+                    <dxg:GridColumn Header="İşlem Zamanı" FieldName="ProcessTime" IsSmart="True"/>
+                    <dxg:GridColumn Header="İşlem" FieldName="ProcessType" IsSmart="True" />
+                    <dxg:GridColumn Header="Detay" FieldName="ProcessDetail" IsSmart="True"/>
+                </dxg:GridControl>
+
+            </dxlc:LayoutControl>
+
             <Grid Grid.Row="2" />
             <Grid Grid.Row="2">
                 <local:PaginationControl x:Name="pControl" CurrentPage="{Binding CurrentPage,Mode=TwoWay}" PageCount="{Binding PageCount, Mode=TwoWay}"/>
